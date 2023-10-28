@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,10 @@
         body {
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
-            color: var(--tg-theme-text-color); /* Добавьте значение цвета, если не определено ранее. */
-            background: var(--tg-theme-bg-color); /* Добавьте значение цвета, если не определено ранее. */
+            color: var(--tg-theme-text-color);
+            /* Добавьте значение цвета, если не определено ранее. */
+            background: var(--tg-theme-bg-color);
+            /* Добавьте значение цвета, если не определено ранее. */
         }
 
         #main {
@@ -35,13 +38,14 @@
             margin: 0 auto;
         }
 
-        img{
+        img {
             width: 25%;
             height: 25%;
         }
 
         button {
-            border: 1px solid #000; /* Добавьте цвет границы, например, черный. */
+            border: 1px solid #000;
+            /* Добавьте цвет границы, например, черный. */
             border-radius: 5px;
             margin-top: 50px;
             height: 60px;
@@ -50,15 +54,38 @@
             font-weight: 500;
             cursor: pointer;
             transition: background 500ms ease;
-            color: var(--tg-theme-button-color); /* Добавьте значение цвета, если не определено ранее. */
-            background: var(--tg-theme-button-text-color); /* Добавьте значение цвета, если не определено ранее. */
+            color: var(--tg-theme-button-color);
+            /* Добавьте значение цвета, если не определено ранее. */
+            background: var(--tg-theme-button-text-color);
+            /* Добавьте значение цвета, если не определено ранее. */
         }
 
         button:hover {
-            background: var(--tg-theme-secondary-bg-color); /* Добавьте значение цвета, если не определено ранее. */
+            background: var(--tg-theme-secondary-bg-color);
+            /* Добавьте значение цвета, если не определено ранее. */
+        }
+
+        #form {
+            display: none;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            outline: none;
+            margin: 10px 5%;
+            padding: 15px 10px;
+            font-size: 14px;
+            border: 2px solid silver;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #db5d5d;
         }
     </style>
 </head>
+
 <body>
     <div id="main">
         <h1>Онлайн магазин</h1>
@@ -66,6 +93,31 @@
         <p>.............................................</p>
         <button id="buy">Купить</button>
     </div>
+
+    <form id="form">
+        <input type="text" placeholder="Имя" id="user_name">
+        <input type="text" placeholder="Email" id="user_email">
+        <input type="text" placeholder="Телефон" id="user_phone">
+        <button id="order">Оформить</button>
+    </form>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
+
+        buy.addEventListener("click", () => {
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "display";
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name
+        })
+
+        order.addEventListener("click",() => {
+            tg.close();
+        })
+
+    </script>
 </body>
+
 </html>
