@@ -1,108 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            color: var(--tg-theme-text-color);
-            /* Добавьте значение цвета, если не определено ранее. */
-            background: var(--tg-theme-bg-color);
-            /* Добавьте значение цвета, если не определено ранее. */
-        }
-
-        #main {
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 50px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            width: 350px;
-            margin: 0 auto;
-        }
-
-        img {
-            width: 25%;
-            height: 25%;
-        }
-
-        button {
-            border: 1px solid #000;
-            /* Добавьте цвет границы, например, черный. */
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 60px;
-            width: 200px;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 500ms ease;
-            color: var(--tg-theme-button-color);
-            /* Добавьте значение цвета, если не определено ранее. */
-            background: var(--tg-theme-button-text-color);
-            /* Добавьте значение цвета, если не определено ранее. */
-        }
-
-        button:hover {
-            background: var(--tg-theme-secondary-bg-color);
-            /* Добавьте значение цвета, если не определено ранее. */
-        }
-
-        #form {
-            display: none;
-            text-align: center;
-        }
-
-        input {
-            width: 90%;
-            outline: none;
-            margin: 10px 5%;
-            padding: 15px 10px;
-            font-size: 14px;
-            border: 2px solid silver;
-            border-radius: 5px;
-        }
-
-        input:focus {
-            border-color: #db5d5d;
-        }
-    </style>
+    <title>Document</title>
 </head>
-
-<body>
-    <div id="main">
+<body >
+    
+    <div id="partfolioBotShop">
         <h1>Онлайн магазин</h1>
-        <img src="pizza.png" alt="Извините, фото не грузится">
-        <p>.............................................</p>
-        <button id="buy">Купить</button>
+        <img src="https://s2.best-wallpaper.net/wallpaper/2560x1440/1707/Delicious-fruit-pie_2560x1440.jpg" width="300px" height="300px">
+        <p>КУПИТЕ ЭТО ВАМ ОЧЕНЬ НУЖНО</p>
+        <button id = "buy">КУПИТЬ</button>
     </div>
 
     <form id="form">
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Email" id="user_email">
         <input type="text" placeholder="Телефон" id="user_phone">
-        <div id="error"></div>
         <button id="order">Оформить</button>
     </form>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let buy = document.getElementById("buy");
@@ -112,27 +31,26 @@
         buy.addEventListener("click", () => {
             document.getElementById("main").style.display = "none";
             document.getElementById("form").style.display = "block";
-            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
-        })
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.last_name;
+        });
 
         order.addEventListener("click", () => {
-            document.getElementById("error").innerText = '';
+            document,getElementById("error").innerText = '';
             let name = document.getElementById("user_name").value;
-            let email = document.getElementById("user_email").value;
+            let email = document.getElementById("user_name").value;
             let phone = document.getElementById("user_phone").value;
-            if (name.length < 5) {
-                document.getElementById("error").innerText = 'ошибка в имени';
+
+            if(name.length < 5) {
+                document.getElementById("error").innerText = 'Ошибка в имени';
                 return;
             }
-            1
-            if (email.length < 5) {
+            if(email.length < 5) {
                 document.getElementById("error").innerText = 'Ошибка в email';
                 return;
             }
-            if (phone.length < 5) {
-                document.getElementById("error").innerText = 'Ошибка в номере телифона'
-                return;
-
+            if(phone.length < 5) {
+                document.getElementById("error").innerText = 'Ошибка в номере телефона';
+                return
             }
 
             let data = {
@@ -141,13 +59,12 @@
                 phone:phone
             }
 
-            tg.sendData(JSON.stringify(data));
+            rg.sendDate(data);
 
             tg.close();
-
-        });
-
+        })
     </script>
-</body>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</body>
 </html>
